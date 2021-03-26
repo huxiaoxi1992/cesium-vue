@@ -1,0 +1,67 @@
+{
+  "name": "cesium-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve-terrain": "node terrain/serve-terrain.js",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "cesium": "^1.79.1",
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.4.6",
+    "@vue/cli-plugin-eslint": "^4.4.6",
+    "@vue/cli-plugin-router": "^4.4.6",
+    "@vue/cli-plugin-vuex": "^4.4.6",
+    "@vue/cli-service": "^4.4.6",
+    "@vue/eslint-config-airbnb": "^5.3.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.4.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^6.2.2",
+    "express": "^4.17.1",
+    "sass": "^1.32.5",
+    "sass-loader": "^10.1.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/recommended",
+      "@vue/airbnb",
+      "prettier",
+      "prettier/vue"
+    ],
+    "rules": {
+      "no-console": "off",
+      "import/no-cycle": "off",
+      "global-require": "off",
+      "no-param-reassign": "off",
+      "no-await-in-loop": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100,
+    "arrowParens": "avoid"
+  }
+}
