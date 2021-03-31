@@ -42,6 +42,16 @@ export default class Earth {
   }
 
   /**
+   * 增加自建影像切片
+   */
+  addTmsLayer(url) {
+    const tmsMapProvider = new UrlTemplateImageryProvider({
+      url,
+    });
+    this.viewer.imageryLayers.addImageryProvider(tmsMapProvider);
+  }
+
+  /**
    * 加载地形数据
    */
   addTerrainLayer(url) {
@@ -49,6 +59,9 @@ export default class Earth {
     this.viewer.scene.terrainProvider = terrainProvider;
   }
 
+  /**
+   * 根据高度获取底图缩放等级
+   */
   detectZoomLevel(distance) {
     const { tileProvider } = this.viewer.scene.globe._surface;
     const quadtree = tileProvider._quadtree;
