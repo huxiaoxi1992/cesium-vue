@@ -36,7 +36,7 @@ export default class Earth {
    */
   addGoogleMapLayer() {
     const googleMapProvider = new UrlTemplateImageryProvider({
-      url: 'http://mt1.google.cn/vt/lyrs=s&hl=zh-CN&x={x}&y={y}&z={z}&s=Gali',
+      url: 'http://mt1.google.com/vt/lyrs=s&hl=zh-CN&x={x}&y={y}&z={z}&s=Gali',
     });
     this.viewer.imageryLayers.addImageryProvider(googleMapProvider);
   }
@@ -45,11 +45,7 @@ export default class Earth {
    * 加载地形数据
    */
   addTerrainLayer(url) {
-    const terrainProvider = new CesiumTerrainProvider({
-      // 正式部署时根据 env 文件更新前缀
-      // url: 'http://localhost:3000/test/',
-      url,
-    });
+    const terrainProvider = new CesiumTerrainProvider({ url });
     this.viewer.scene.terrainProvider = terrainProvider;
   }
 

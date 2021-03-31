@@ -10,11 +10,6 @@ app.use(
   express.static('terrain', {
     setHeaders(res, filePath) {
       res.set('Access-Control-Allow-Origin', '*');
-      const ext = path.extname(filePath);
-      if (ext === '.terrain') {
-        res.set('Content-Encoding', 'gzip');
-        res.set('Content-Type', 'application/octet-stream');
-      }
     },
   }),
 );

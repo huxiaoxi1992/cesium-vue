@@ -9,9 +9,10 @@ import Earth from '@/utils/earth';
 
 export default {
   mounted() {
-    const earth = new Earth('map', { x: 105, y: 30, z: 3000 });
+    const earth = new Earth('map', { x: 107.6, y: 33.9, z: 3000 });
     earth.addGoogleMapLayer();
-    console.log(earth.detectZoomLevel(5000));
+    earth.addTerrainLayer('http://localhost:3000/shanxi/');
+    // console.log(earth.detectZoomLevel(5000));
   },
 };
 </script>
