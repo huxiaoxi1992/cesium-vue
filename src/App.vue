@@ -9,10 +9,11 @@ import Earth from '@/utils/earth';
 
 export default {
   mounted() {
-    const earth = new Earth('map', { x: 103.7, y: 29.55, z: 3000 });
+    const earth = new Earth('map', { x: 84.0238501, y: 43.3189417, z: 3000 });
     earth.addGoogleMapLayer();
-    earth.addTmsLayer('http://172.16.122.191:5000/leshan-tiles/{z}/{x}/{y}.png');
-    earth.addTerrainLayer('http://172.16.122.191:5000/leshan-terrain/');
+    earth.add3dTiles('http://172.16.122.184:5000/nalati/ykzx-wgz/tileset.json');
+    // earth.addTmsLayer('http://172.16.122.191:5000/leshan-tiles/{z}/{x}/{y}.png');
+    // earth.addTerrainLayer('http://172.16.122.191:5000/leshan-terrain/');
     // console.log(earth.detectZoomLevel(5000));
   },
 };

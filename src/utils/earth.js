@@ -5,6 +5,12 @@ import {
   CesiumTerrainProvider,
   UrlTemplateImageryProvider,
   Viewer,
+  Cesium3DTileset,
+  HeadingPitchRange,
+  Matrix4,
+  Cartographic,
+  ClippingPlane,
+  ClippingPlaneCollection,
 } from 'cesium';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
@@ -76,5 +82,35 @@ export default class Earth {
       }
     }
     return null;
+  }
+
+  add3dTiles(url) {
+    const clippingPlanes = new ClippingPlaneCollection({
+      planes: [new ClippingPlane(Cartesian3.fromDegrees(0, 0, 0), 0.0)],
+    });
+    const tileset = new Cesium3DTileset({ url, clippingPlanes });
+    this.viewer.scene.primitives.add(tileset);
+    return tileset.readyPromise
+      .then(() => {
+        const { boundingSphere } = tileset;
+        const { radius } = boundingSphere;
+
+        this.viewer.zoomTo(tileset, new HeadingPitchRange(0.5, -0.2, radius * 4.0));
+
+        if (!Matrix4.equals(tileset.root.transform, Matrix4.IDENTITY)) {
+          const transformCenter = Matrix4.getTranslation(tileset.root.transform, Cartesian3());
+          const transformCartographic = Cartographic.fromCartesian(transformCenter);
+          const boundingSphereCartographic = Cartographic.fromCartesian(
+            tileset.boundingSphere.center,
+          );
+          const height = boundingSphereCartographic.height - transformCartographic.height;
+          clippingPlanes.modelMatrix = Matrix4.fromTranslation(Cartesian3(0, 0, height));
+        }
+
+        return tileset;
+      })
+      .otherwise(error => {
+        console.log(error);
+      });
   }
 }
